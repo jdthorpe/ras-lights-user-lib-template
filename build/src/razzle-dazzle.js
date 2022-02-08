@@ -9,12 +9,13 @@ function effect(x, globals) {
         return this.state;
     }
     const now = +new Date();
-    const delta = this.frac + (x.rate * (now - this.prev_time)) / 1000;
-    this.frac = delta % 1;
-    for (let i = 0; i < delta; i++) {
+    let delta = this.frac + (x.rate * (now - this.prev_time)) / 1000;
+    while (delta > 1) {
+        delta -= 1;
         let i = Math.floor(Math.random() * globals.leds);
         this.state[i] = this.state[i] === 0 ? 255 : 0;
     }
+    this.frac = delta;
     return this.state;
 }
 (0, register_1.register)({
