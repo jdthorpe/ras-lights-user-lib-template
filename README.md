@@ -17,3 +17,11 @@
 4. Import your new function in the `src/index.ts` file
 5. Compile the library using `npm run build`
 6. Push the library to your pi
+
+# tech notes
+
+-   The name field for the remote module in the webpack plugin must match the name of the library in the ras-lights admin
+
+```js
+name: "user",
+```
