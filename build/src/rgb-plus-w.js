@@ -2,32 +2,36 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const register_1 = require("../register");
 function effect(x, globals) {
-    const even_colors = x.colors.filter((c, i) => {
-        return i % 2 === 0;
-    });
-    const odd_colors = x.colors.filter((c, i) => {
-        return i % 2 === 1;
-    });
-    return [...even_colors, ...odd_colors.reverse()];
+    const { rgb, w } = x;
+    const out = new Array(globals.leds);
+    for (let i = 0; i < globals.leds; i++)
+        out[i] = [...rgb[i % rgb.length], w[i % w.length]];
+    return out;
 }
 (0, register_1.register)({
     /* Effect Name */
-    name: "Reflection",
+    name: "RGB+W",
     /* Effect Function */
     func: effect,
     /* Effect Inputs */
     input: [
         {
-            key: "colors",
+            key: "rgb",
             type: "rgb[]",
-            label: "Input Colors",
+            label: "RGB",
             default: [
                 [0, 0, 255],
                 [0, 255, 255],
                 [100, 0, 255],
             ],
         },
+        {
+            key: "w",
+            type: "number[]",
+            label: "W",
+            default: [0, 63, 127, 191, 255],
+        },
     ],
     /* Effect Output Type */
-    output: "rgb[]",
+    output: "rgbw[]",
 });
