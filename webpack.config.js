@@ -1,12 +1,18 @@
 const ModuleFederationPlugin = require("webpack/lib/container/ModuleFederationPlugin");
+const DeterministicChunkIdsPlugin = require("webpack/lib/ids/DeterministicChunkIdsPlugin");
+const HashedModuleIdsPlugin = require("webpack/lib/ids/HashedModuleIdsPlugin");
 
 module.exports = {
     entry: "./bootstrap",
     target: "web",
     mode: "production",
     output: {
+        hashSalt: "user",
         publicPath: "auto",
         chunkFilename: "user-[id].js",
+    },
+    optimization: {
+        chunkIds: "deterministic",
     },
     module: {
         rules: [
@@ -26,6 +32,7 @@ module.exports = {
     devtool: "source-map",
 
     plugins: [
+        new DeterministicChunkIdsPlugin({ hashSalt: 5 }),
         new ModuleFederationPlugin({
             name: "user",
             filename: "remoteEntry.js",
