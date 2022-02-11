@@ -6,6 +6,7 @@ module.exports = {
     mode: "production",
     output: {
         publicPath: "auto",
+        chunkFilename: "user-[id].js",
     },
     module: {
         rules: [
@@ -31,6 +32,7 @@ module.exports = {
             // remotes: {
             //     host: "host@/remoteEntry.js",
             // },
+            library: { type: "var", name: "user" },
             exposes: {
                 "./lib": "./bootstrap",
             },
