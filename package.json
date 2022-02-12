@@ -1,5 +1,5 @@
 {
-    "name": "default-lib",
+    "name": "ras-lights-user-demo",
     "version": "1.0.0",
     "description": "Default library of display functions",
     "main": "build/bootstrap.js",
