@@ -15,6 +15,7 @@ function effect(x, globals) {
         let i = Math.floor(Math.random() * globals.leds);
         this.state[i] = this.state[i] === 0 ? 255 : 0;
     }
+    this.prev_time = now;
     this.frac = delta;
     return this.state;
 }
