@@ -14,6 +14,7 @@ function effect(x) {
         //  time accounting
         const now = +new Date();
         const delta = this.frac + (x.rate * (now - this.prev_time)) / 1000;
+        console.log(delta, this.frac);
         this.i += Math.floor(delta) % x.count;
         this.prev_time = now;
         this.frac = delta % 1;
@@ -40,7 +41,7 @@ function effect(x) {
         {
             key: "rate",
             type: "number",
-            label: "Delay",
+            label: "Rate",
             default: 1,
             min: 0.01,
             max: 10,
