@@ -6,25 +6,35 @@ interface input {
 }
 
 function effect(
-    this: { i: number; prev_time: number; frac: number },
+    this: { i: number; dir: number; prev_time: number; frac: number },
     x: input
 ): number[] {
     // initialization
     if (typeof this.i === "undefined") {
-        // start state
-        this.i = 0;
         // time accounting
         this.prev_time = +new Date();
         this.frac = 0;
+        // start state
+        this.i = 0;
+        this.dir = 1;
     } else {
         //  time accounting
         const now = +new Date();
         const delta = this.frac + (x.rate * (now - this.prev_time)) / 1000;
-        this.i = (i + Math.floor(delta)) % x.count;
+        // next state
         this.prev_time = now;
         this.frac = delta % 1;
+        // action
+        if (delta > 1) {
+            if (this.i >= x.count - 1) {
+                this.dir = -1;
+            } else if (this.i <= 0) {
+                this.dir = 1;
+            }
+            this.i += this.dir;
+        }
     }
-
+    // return value
     const out = new Array(x.count).fill(0);
     out[this.i] = 255;
     return out;
@@ -32,7 +42,7 @@ function effect(
 
 register({
     /* Effect Name */
-    name: "Marquee",
+    name: "Marquee Bounce",
     /* Effect Function */
     func: effect,
     /* Effect Inputs */
