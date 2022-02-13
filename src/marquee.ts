@@ -20,7 +20,7 @@ function effect(
         //  time accounting
         const now = +new Date();
         const delta = this.frac + (x.rate * (now - this.prev_time)) / 1000;
-        this.i = (i + Math.floor(delta)) % x.count;
+        this.i = (this.i + Math.floor(delta)) % x.count;
         this.prev_time = now;
         this.frac = delta % 1;
     }
