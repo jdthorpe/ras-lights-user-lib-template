@@ -7,7 +7,7 @@ interface input {
 }
 
 function effect(
-    this: { from: rgbw[]; start_time: number },
+    this: { from: rgbw[]; start_time: number; stopped: boolean },
     x: input,
     globals: globals
 ): rgbw[] {
@@ -18,11 +18,15 @@ function effect(
             [0, 0, 0, 0],
         ];
         this.start_time = +new Date();
+        this.stopped = false;
+    }
+    if (this.stopped) {
+        console.log("stop");
+        globals.stop();
     }
     const now = +new Date();
     if (now - this.start_time > x.fade_time) {
-        console.log("stop");
-        globals.stop();
+        this.stopped = true;
         return [x.to];
     }
     return this.from.map((f) =>
