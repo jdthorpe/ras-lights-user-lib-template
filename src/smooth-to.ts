@@ -19,6 +19,7 @@ function effect(
     }
     const now = +new Date();
     if (now - this.start_time > x.fade_time) {
+        console.log("stop");
         globals.stop();
         return [x.to];
     }
