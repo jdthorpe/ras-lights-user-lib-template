@@ -4,6 +4,8 @@ const register_1 = require("../register");
 const utils_1 = require("./utils");
 function effect(x, globals) {
     if (typeof this.from === "undefined") {
+        console.log("smooth to globals", JSON.stringify(globals));
+        console.dir(globals);
         this.from = (globals.prev && globals.prev.map(utils_1.asRGBW)) || [
             [0, 0, 0, 0],
         ];
