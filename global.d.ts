@@ -3,6 +3,8 @@ type rgbw = [number, number, number, number];
 
 interface globals {
     leds: number;
+    stop: () => void;
+    prev: number[] | rgb[] | rgbw[];
 }
 
 type func =

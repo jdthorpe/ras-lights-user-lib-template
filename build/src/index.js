@@ -4,3 +4,4 @@ require("./razzle-dazzle");
 require("./rgb-plus-w");
 require("./marquee");
 require("./marquee-bounce");
+require("./smooth-to");
