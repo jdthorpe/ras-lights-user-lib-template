@@ -12,7 +12,7 @@ function Progress(t: number, w: number): { (): { i: number; c: number } } {
     return () => {
         const delta = (+new Date() - start_time) / (t * 1000);
         // how far along in this cycle
-        const i = Math.floor(delta * w);
+        const i = Math.floor(delta * w) % w;
         // cycles between 0 and 1
         const c = Math.floor(delta) % 2;
         return { i, c };
