@@ -17,13 +17,18 @@ function take(x, i) {
 }
 function effect(x, globals) {
     // initialization
+    const A = +new Date();
     if (typeof this.progress === "undefined") {
         this.progress = Progress(x.r, x.w);
     }
+    const B = +new Date();
     const { i, c } = this.progress();
+    const C = +new Date();
     const out = new Array(globals.leds);
     for (let j = 0; j < globals.leds; j++)
         out[j] = take(c ^ +(j % x.w > i) ^ Math.floor(j / x.w) % 2 ? x.x : x.y, j);
+    const D = +new Date();
+    console.log(`A: ${B - A} B: ${C - B} C: ${D - C}`);
     return out;
 }
 (0, register_1.register)({
