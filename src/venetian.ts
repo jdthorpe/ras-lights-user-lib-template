@@ -34,13 +34,16 @@ function effect(this: any, x: input, globals: globals): rgb[] {
     const C = +new Date();
     const out = new Array(globals.leds);
     const D = +new Date();
+    const left = x.x;
+    const right = x.y;
+    const E = +new Date();
     for (let j = 0; j < globals.leds; j++)
         out[j] = take(
-            c ^ +(j % x.w > i) ^ Math.floor(j / x.w) % 2 ? x.x : x.y,
+            c ^ +(j % x.w > i) ^ Math.floor(j / x.w) % 2 ? left : right,
             j
         );
-    const E = +new Date();
-    console.log(`A: ${B - A} B: ${C - B} C: ${D - C} D: ${E - D}`);
+    const F = +new Date();
+    console.log(`A: ${B - A} B: ${C - B} C: ${D - C} D: ${E - D} E: ${F - E}`);
     return out;
 }
 
