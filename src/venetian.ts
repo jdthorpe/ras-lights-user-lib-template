@@ -31,7 +31,10 @@ function effect(this: any, x: input, globals: globals): rgb[] {
     const { i, c } = this.progress();
     const out = new Array(globals.leds);
     for (let j = 0; j < globals.leds; j++)
-        out[j] = take(c ^ +(i > j) ^ j % x.w ? x.x : x.y, j);
+        out[j] = take(
+            c ^ +(j % x.w > i) ^ Math.floor(j / x.w) % 2 ? x.x : x.y,
+            j
+        );
     return out;
 }
 
