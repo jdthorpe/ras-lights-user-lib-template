@@ -36,6 +36,7 @@ function effect(this: any, inputs: input, globals: globals): rgb[] {
     // pick a random color that is not the same as the current color
     let ic = Math.floor(Math.random() * (colors.length - 2)); // max is one fewer than the number of colors (or the last index of the colors array, anyway)
 
+    console.log(`changing to color ${ic} at index ${i}`);
     // set the LED to a random color
     this.state[i] = colors[ic + +(ic >= this.state[i])]; // if the random color is greater than or equal to the current color, increment it by one to avoid picking the same color
   }
@@ -70,7 +71,7 @@ register({
       label: "Speed (count/second)",
       default: 5,
       min: 1,
-      max: 10,
+      max: 1000,
     },
   ],
   /* Effect Output Type */
