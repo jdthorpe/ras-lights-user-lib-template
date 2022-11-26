@@ -6,7 +6,10 @@ function effect(inputs, globals) {
     if (typeof this.state === "undefined") {
         // INITIALIZE STATE
         // initially all the LEDs are set to the first color
-        this.state = new Array(globals.leds).fill(colors[0]);
+        this.state = new Array(globals.leds);
+        for (let i = 0; i < globals.leds; i++) {
+            this.state[i] = colors[Math.floor(Math.random() * colors.length)];
+        }
         // initialize the time of the last update
         this.prev_time = +new Date();
         this.frac = 0;
@@ -26,7 +29,11 @@ function effect(inputs, globals) {
             // pick a random color
             let ic = Math.floor(Math.random() * colors.length);
             this.state[i] = colors[ic];
-            console.log(`changing to color ${ic + 1} of ${colors.length} at index ${i}: ${colors[ic]}`);
+            //   console.log(
+            //     `changing to color ${ic + 1} of ${colors.length} at index ${i}: ${
+            //       colors[ic]
+            //     }`
+            // );
             // set the LED to a random color
         }
         catch (e) {
