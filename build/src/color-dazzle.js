@@ -41,14 +41,13 @@ function effect(inputs, globals) {
     input: [
         {
             key: "colors",
-            type: "rgbw[]",
+            type: "rgb[]",
             label: "Colors",
             default: [
-                [0, 0, 0, 0],
-                [0, 0, 0, 127],
-                [0, 0, 0, 127],
-                [0, 255, 0, 0],
-                [255, 0, 0, 0],
+                [0, 0, 0],
+                [255, 255, 255],
+                [0, 255, 0],
+                [255, 0, 0],
             ],
         },
         {
