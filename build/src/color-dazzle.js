@@ -6,7 +6,7 @@ function effect(inputs, globals) {
     if (typeof this.state === "undefined") {
         // INITIALIZE STATE
         // initially all the LEDs are set to the first color
-        this.state = new Array(globals.leds).fill(0);
+        this.state = new Array(globals.leds).fill(colors[0]);
         // initialize the time of the last update
         this.prev_time = +new Date();
         this.frac = 0;
