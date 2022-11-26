@@ -23,12 +23,10 @@ function effect(inputs, globals) {
         try {
             // pick a random LED to update
             let i = Math.floor(Math.random() * globals.leds);
-            // pick a random color that is not the same as the current color
-            let ic = Math.floor(Math.random() * (colors.length - 2)); // max is one fewer than the number of colors (or the last index of the colors array, anyway)
-            // if the random color is greater than or equal to the current color, increment it by one to avoid picking the same color
-            ic += +(ic >= this.state[i]);
+            // pick a random color
+            let ic = Math.floor(Math.random() * colors.length);
             this.state[i] = colors[ic];
-            console.log(`changing to color ${ic} of ${colors.length} at index ${i}: ${colors[ic]}`);
+            console.log(`changing to color ${ic + 1} of ${colors.length} at index ${i}: ${colors[ic]}`);
             // set the LED to a random color
         }
         catch (e) {
